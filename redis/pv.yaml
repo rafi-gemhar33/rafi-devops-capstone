@@ -1,0 +1,19 @@
+#This creates the persistent volume for the statefulset using the EBS volume created in AWS.
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: rafi-pv
+  namespace: demo
+  labels:
+    type: rafi-pv
+spec:
+  claimRef:
+    name: rafi-pvc
+    namespace: demo
+  capacity:
+    storage: 11Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: /var/lib/redis
+

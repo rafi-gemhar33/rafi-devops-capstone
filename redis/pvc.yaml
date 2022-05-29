@@ -1,0 +1,21 @@
+#Creates the PersistentVolumeClaim for the previously created PV.
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: rafi-pvc
+  namespace: demo
+  labels:
+      type: rafi-pvc
+spec:
+  # storageClassName: standard # Empty string must be explicitly set otherwise default StorageClass will be set
+  volumeName: rafi-pv #Attaches the PersistentVolume created earlier called rafi-pv to this PVC
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 3Gi
+    # selector:
+    #   matchLabels:
+    #     type: rafi-pv
+
+
